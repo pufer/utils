@@ -1,10 +1,10 @@
 #!/bin/sh
  
-# ×îºÃÔÚÖ´ĞĞÍêlnmp_for_el7.shºó£¬ÔÚÊ¹ÓÃ±¾½Å±¾¸²¸Ç°²×°nginx£¬×îºÃ²»ÒªÖ±½ÓÊ¹ÓÃ±¾½Å±¾£¨Ö±½ÓÊ¹ÓÃµÄ»°ÎÒÃ»ÓĞ²âÊÔ£©
-# CentOS 7Ä¬ÈÏÊ¹ÓÃopenssl 1.0.1£¬µ«ÊÇÕâ¸ö°æ±¾²»Ö§³ÖALPN, Ïê¼û£º http://nginx.org/en/docs/http/ngx_http_v2_module.html#issues
-# µ«ÊÇnginx 1.10.0ÒÔºó£¬Ö»ÓĞHTTP/2Ä£¿é£¬²»ÔÙÓĞspdy£¬²¢ÇÒ³ıchromeÍâµÄä¯ÀÀÆ÷¶¼±ØĞëÖ§³ÖALPN²ÅÄÜ¿ªÆôHTTP/2
-# ±¾½Å±¾ÓÃÓÚÔÚCentOS 7ÉÏ±àÒëopenssl 1.0.2²¢ÇÒÖØĞÂ±àÒënginx£¨³ıopensslÍâÆäËûÅäÖÃºÍ¹Ù·½°æ±¾Ò»Ñù£©
-# ±àÒëÑ¡Ïî²Î¿¼£º http://nginx.org/en/linux_packages.html#arguments
+# æœ€å¥½åœ¨æ‰§è¡Œå®Œlnmp_for_el7.shåï¼Œåœ¨ä½¿ç”¨æœ¬è„šæœ¬è¦†ç›–å®‰è£…nginxï¼Œæœ€å¥½ä¸è¦ç›´æ¥ä½¿ç”¨æœ¬è„šæœ¬ï¼ˆç›´æ¥ä½¿ç”¨çš„è¯æˆ‘æ²¡æœ‰æµ‹è¯•ï¼‰
+# CentOS 7é»˜è®¤ä½¿ç”¨openssl 1.0.1ï¼Œä½†æ˜¯è¿™ä¸ªç‰ˆæœ¬ä¸æ”¯æŒALPN, è¯¦è§ï¼š http://nginx.org/en/docs/http/ngx_http_v2_module.html#issues
+# ä½†æ˜¯nginx 1.10.0ä»¥åï¼Œåªæœ‰HTTP/2æ¨¡å—ï¼Œä¸å†æœ‰spdyï¼Œå¹¶ä¸”é™¤chromeå¤–çš„æµè§ˆå™¨éƒ½å¿…é¡»æ”¯æŒALPNæ‰èƒ½å¼€å¯HTTP/2
+# æœ¬è„šæœ¬ç”¨äºåœ¨CentOS 7ä¸Šç¼–è¯‘openssl 1.0.2å¹¶ä¸”é‡æ–°ç¼–è¯‘nginxï¼ˆé™¤opensslå¤–å…¶ä»–é…ç½®å’Œå®˜æ–¹ç‰ˆæœ¬ä¸€æ ·ï¼‰
+# ç¼–è¯‘é€‰é¡¹å‚è€ƒï¼š http://nginx.org/en/linux_packages.html#arguments
 
 WORKING_DIR="$PWD";
 OPENSSL_PREFIX_DIR=/usr/local/openssl-1.0.2;
@@ -17,16 +17,16 @@ NGINX_DIR_NAME="nginx-$NGINX_VERSION";
 NGINX_PKG_NAME="$NGINX_DIR_NAME.tar.gz";
 
 
-# Èí¼şÔ´
+# è½¯ä»¶æº
 yum install epel-release;
 rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm ;
 
-# °²×°ÒÀÀµÏî
+# å®‰è£…ä¾èµ–é¡¹
 yum install -y yum-utils yum-plugin-remove-with-leaves yum-cron yum-plugin-upgrade-helper yum-plugin-fastestmirror rpm-build;
 yum install -y nginx
 yum-builddep -y nginx;
 
-# ÏÂÔØopenssl
+# ä¸‹è½½openssl
 if [ ! -e "$OPENSSL_PKG_NAME" ]; then
     wget "https://www.openssl.org/source/$OPENSSL_PKG_NAME";
 fi
@@ -48,7 +48,7 @@ fi
 tar -axvf "$NGINX_PKG_NAME";
 cd "$NGINX_DIR_NAME";
 
-# ±àÒëÑ¡Ïî²Î¿¼£º http://nginx.org/en/linux_packages.html#arguments
+# ç¼–è¯‘é€‰é¡¹å‚è€ƒï¼š http://nginx.org/en/linux_packages.html#arguments
 
 ./configure \
 --prefix=/etc/nginx \
